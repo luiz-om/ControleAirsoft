@@ -22,8 +22,9 @@
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.5; min-height: 100vh; }
 .app { max-width: 780px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
 header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 8px; }
-header h1 { font-size: 18px; font-weight: 600; color: var(--text); }
-.header-brand { display: flex; align-items: center; gap: 10px; }
+header h1 { font-size: 18px; font-weight: 600; color: var(--text); min-width: 0; }
+.header-brand { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1; }
+.header-brand h1 { min-width: 0; flex: 1; }
 .header-brand img { width: 80px; height: 80px; object-fit: contain; }
 .badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 99px; letter-spacing: .03em; text-transform: uppercase; }
 .badge-pub { background: var(--blue-bg); color: var(--blue); }
@@ -174,23 +175,27 @@ tr:last-child td { border-bottom: none; }
 @media (max-width: 740px) {
   .app { padding: 1rem 0.75rem 2rem; }
   header { flex-direction: column; align-items: stretch; gap: 10px; }
-  .header-brand { width: 100%; justify-content: flex-start; }
+  .header-brand { width: 100%; justify-content: flex-start; flex-wrap: wrap; }
   .header-brand img { width: 56px; height: 56px; }
+  .header-brand h1 { min-width: 0; flex: 1 1 auto; }
   .nav, .sub-nav { justify-content: flex-start; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .nav .tab, .sub-nav .sub-tab { flex: 1 0 auto; min-width: 120px; }
+  .nav .tab, .sub-nav .sub-tab { flex: 1 0 auto; min-width: 110px; white-space: nowrap; }
   .cards { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
   .card { padding: 1rem; }
   .form-row { flex-direction: column; align-items: stretch; }
   .field { min-width: 100%; }
   .form-row > .btn, .modal-footer .btn { width: 100%; }
   .month-row { flex-direction: column; align-items: stretch; }
-  .month-row select, .month-row button { width: 100%; }
+  .month-row select, .month-row button { width: 100%; min-width: 0; }
   .export-row { flex-direction: column; }
   .export-row .card { width: 100%; }
   .cards { gap: 12px; }
   .card { overflow-x: auto; }
   table { min-width: 540px; }
   th, td { padding: 8px 8px; }
+  .field[style] { min-width: 100% !important; max-width: 100% !important; flex: 1 1 100% !important; }
+  .cards[style] { grid-template-columns: 1fr !important; gap: 12px !important; }
+  .month-row select[style], .field[style] input, .field[style] select { min-width: 0 !important; width: 100% !important; }
 }
 @media (max-width: 460px) {
   #login-overlay > .modal-dialog,
